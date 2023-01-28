@@ -4,23 +4,49 @@ using UnityEngine;
 
 public class GameContoller : MonoBehaviour
 {
+    public static GameContoller Instance;
+
     public GameObject[] Prefabs;
+    public GameObject Conveyor;
+    public GameObject Basket;
     public Transform SpawnPoint;  
     public int MaxCount = 9;
+    public string[] AllNames;
+    public string QuestName;
 
+    private bool _isWin = false;
+    
+    public List<GameObject> Elements;
+    private void Awake()
+    {
+        Instance = this;
+    }
 
-    private GameObject[] pool;
-    private List<GameObject> Elements;
     private void Start()
     {
+        
         Elements = new List<GameObject>();
-        //pool = new GameObject[MaxCount];
         SpawnElement();
     }
 
     private void SpawnElement()
     {
-        StartCoroutine(Spawn());
+        if(!_isWin)
+            StartCoroutine(Spawn());
+    }
+
+    public void WinGame()
+    {
+        _isWin = true;
+        UIController.UI.WinScreen.SetActive(true);
+        UIController.UI.GameScreen.SetActive(false);
+        Conveyor.SetActive(false);
+        var obj = FindObjectsOfType<Take>();
+        foreach(var el in obj)
+        {
+            el.gameObject.SetActive(false);
+        }
+        Basket.SetActive(false);
     }
 
     IEnumerator Spawn()

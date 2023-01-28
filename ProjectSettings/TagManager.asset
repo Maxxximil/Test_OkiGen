@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Banana
+  - Apple
+  - Orange
   layers:
   - Default
   - TransparentFX
