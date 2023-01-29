@@ -7,6 +7,7 @@ public class GameContoller : MonoBehaviour
     public static GameContoller Instance;
 
     public GameObject[] Prefabs;
+    public GameObject[] Confetti; 
     public GameObject Conveyor;
     public GameObject Basket;
     public Transform SpawnPoint;  
@@ -45,6 +46,10 @@ public class GameContoller : MonoBehaviour
         foreach(var el in obj)
         {
             el.gameObject.SetActive(false);
+        }
+        foreach(var con in Confetti)
+        {
+            con.SetActive(true);
         }
         Basket.SetActive(false);
     }

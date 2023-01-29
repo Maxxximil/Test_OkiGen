@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     
     public Rig LeftRig;
+    public Rig RightRig;
     public GameObject LeftHand;
     public Transform LeftHandPos;
     public Transform[] BasketPositions;
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
         if (!_take && LeftRig.weight != 0)
         {
-            LeftRig.weight = Mathf.MoveTowards(LeftRig.weight, 0, WeightSpeed * Time.deltaTime);
+           LeftRig.weight = Mathf.MoveTowards(LeftRig.weight, 0, WeightSpeed * Time.deltaTime);
 
         }
         #endregion
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
         IKController.Instance.ToBasket = false;
         if (_countObj == UIController.UI.questNumb)
         {
+            RightRig.weight = 0;
             GameContoller.Instance.WinGame();
             orb.CameraTrigger = true;
             _anim.SetBool("IsWin", true);

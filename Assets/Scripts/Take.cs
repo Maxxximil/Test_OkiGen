@@ -26,6 +26,7 @@ public class Take : MonoBehaviour
     {
         _rb.isKinematic = false;
         _rb.freezeRotation = true;
+        _rb.useGravity = false;
         InBasket = true;
         BasketPoint = basket;
         this.gameObject.transform.position = basket.position;
